@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main(){
+    srand(time(NULL));
+    printf("**NUMERICAL LOTO**");
+    printf("pls enter 6 numbers between 1 with 49(numbers has to be different)\n");
+    int sayi,sayilar[6],kontrol,i,j,a,loto[6],rastgele,b,kontrol2,s,t,kontrol3,bitis;
+    kontrol3=0;
+
+    for(i=0;i<6;i++){
+        printf("pls enter the %d. number\n",i+1);
+        scanf("%d",&sayi);
+        kontrol=0;
+        if(sayi<1||sayi>49){
+            printf("pls enter between 1 with 49\n");
+            i--;
+            continue;
+        }
+        for(j=0;j<i;j++){
+            if(sayi ==sayilar[j]){
+            printf("pls enter a different number\n");
+            kontrol=1;
+            i--;
+            break;
+            }
+        }
+        if(kontrol == 0){
+            sayilar[i] = sayi;
+        }
+    }
+
+    printf("**number are drawing**\n");
+    for(a=0;a<6;a++){
+        rastgele = 1 + rand() %49;
+        kontrol2=0;
+        for(b=0;b<a;b++){
+            if(rastgele== loto[b]){
+                a--;
+                kontrol2=1;
+                break;
+            }
+        }
+        if(kontrol2==0){
+            loto[a]=rastgele;
+        }
+    }
+
+    printf("**loto was drawn**\n");
+    printf("loto \t\t");
+    for(int x=0;x<6;x++){
+        printf("%d ",loto[x]);
+    }
+    printf("\n");
+    printf("your numbers\t");
+    for(int x=0;x<6;x++){
+        printf("%d ",sayilar[x]);
+    }
+
+    for(s=0;s<6;s++){
+        for(t=0;t<6;t++){
+            if(sayilar[t]==loto[s]){
+                kontrol3++;
+                break;
+                }
+            }
+        }
+
+    if(kontrol3==6){
+        printf("**CONGRATS JACKPOT**");
+    }
+    else if(kontrol3 ==5){
+        printf("CONGRATS BONUS");
+    }
+    else if(kontrol3==4){
+        printf("CONGRATS MIDDLE BONUS");
+    }
+    else if(kontrol3==3){
+        printf("CONGRATS LITTLE BONUS");
+    }
+    else{
+        printf("you got nothing");
+    }
+
+
+
+
+
+    scanf("%d",&bitis);
+
+
+  return 0;
+}
